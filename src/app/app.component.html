@@ -1,16 +1,16 @@
 <main class="main">
   <div class="content">
-    <!-- Left Section: Title and Description -->
     <div class="left-side">
       <h1>{{ title }}</h1>
       <p>Discover and rate your favorite dishes! 🍜🍕🍣</p>
-      <button class="pill" (click)="getFoodSuggestion()">Get Food Suggestion</button>
-      <p *ngIf="aiResponse">AI Suggestion: {{ aiResponse }}</p> <!-- Display OpenAI response -->
+      
+      <!-- Button to get food suggestion -->
+      <button class="pill" (click)="getFoodSuggestion()">Get Food Suggestion...</button>
+      
+      <!-- Display AI Food Suggestion -->
+      <p *ngIf="aiResponse">AI Suggestion: {{ aiResponse }}</p>
     </div>
-
     <div class="divider" role="separator" aria-label="Divider"></div>
-
-    <!-- Right Section: Categories and Ratings -->
     <div class="right-side">
       <div class="pill-group">
         <a class="pill" href="#" target="_blank">Top-Rated Dishes</a>
@@ -32,13 +32,13 @@
 
       <div class="social-links">
         <a href="https://github.com/your-profile" aria-label="Github" target="_blank" rel="noopener">
-          🍴 <!-- Food-related emoji icon -->
+          🍴 <!-- Icon replacement for a food-related theme -->
         </a>
         <a href="https://twitter.com/your-profile" aria-label="Twitter" target="_blank" rel="noopener">
-          🍜 <!-- Twitter with food-related emoji -->
+          🍜 <!-- Icon replacement for Twitter with a food-related emoji -->
         </a>
         <a href="https://www.youtube.com/your-profile" aria-label="Youtube" target="_blank" rel="noopener">
-          🍕 <!-- YouTube with food-related emoji -->
+          🍕 <!-- Icon replacement for YouTube with a pizza emoji -->
         </a>
       </div>
     </div>
