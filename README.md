@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+# Here are the screenshots of the functional UI
+
+## First, ssh into the instance (I connected the instance through AWS). Then I cd into my angular application and ran my application. 
+
+<img width="969" alt="Screen Shot 2024-11-15 at 12 03 13 AM" src="https://github.com/user-attachments/assets/98a9a441-7d64-43a6-ab1c-e4aab9f041c8">
+<img width="578" alt="Screen Shot 2024-11-15 at 12 03 20 AM" src="https://github.com/user-attachments/assets/e3e27723-48f2-4fb4-8410-5872b40caf52">
+
