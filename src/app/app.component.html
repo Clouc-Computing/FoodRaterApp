@@ -1,0 +1,46 @@
+<main class="main">
+  <div class="content">
+    <!-- Left Section: Title and Description -->
+    <div class="left-side">
+      <h1>{{ title }}</h1>
+      <p>Discover and rate your favorite dishes! 🍜🍕🍣</p>
+    </div>
+
+    <div class="divider" role="separator" aria-label="Divider"></div>
+
+    <!-- Right Section: Navigation and Categories -->
+    <div class="right-side">
+      <!-- Navigation Pill Links -->
+      <div class="pill-group">
+        <a class="pill" href="#" target="_blank">Top-Rated Dishes</a>
+        <a class="pill" href="#" target="_blank">Foodie Community</a>
+        <a class="pill" href="#" target="_blank" (click)="resetRatings()">Reset Ratings</a>
+        <a class="pill" href="#" target="_blank">Recipe Ideas</a>
+        <a class="pill" href="#" target="_blank">Popular Restaurants</a>
+      </div>
+
+      <!-- Display Food Categories and Ratings -->
+      <div class="pill-group">
+        <div *ngFor="let category of categories">
+          <button class="pill" (click)="rateDish(category)">
+            Rate {{ category.name }} 🍴
+          </button>
+          <p>Rating: {{ category.rating }}</p>
+        </div>
+      </div>
+
+      <!-- Social Links Section -->
+      <div class="social-links">
+        <a href="https://github.com/your-profile" aria-label="Github" target="_blank" rel="noopener">
+          🍴 <!-- Food-related emoji icon -->
+        </a>
+        <a href="https://twitter.com/your-profile" aria-label="Twitter" target="_blank" rel="noopener">
+          🍜 <!-- Twitter with food-related emoji -->
+        </a>
+        <a href="https://www.youtube.com/your-profile" aria-label="Youtube" target="_blank" rel="noopener">
+          🍕 <!-- YouTube with food-related emoji -->
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
