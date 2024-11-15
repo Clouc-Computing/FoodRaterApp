@@ -4,13 +4,14 @@
     <div class="left-side">
       <h1>{{ title }}</h1>
       <p>Discover and rate your favorite dishes! 🍜🍕🍣</p>
+      <button class="pill" (click)="getFoodSuggestion()">Get Food Suggestion</button>
+      <p *ngIf="aiResponse">AI Suggestion: {{ aiResponse }}</p> <!-- Display OpenAI response -->
     </div>
 
     <div class="divider" role="separator" aria-label="Divider"></div>
 
-    <!-- Right Section: Navigation and Categories -->
+    <!-- Right Section: Categories and Ratings -->
     <div class="right-side">
-      <!-- Navigation Pill Links -->
       <div class="pill-group">
         <a class="pill" href="#" target="_blank">Top-Rated Dishes</a>
         <a class="pill" href="#" target="_blank">Foodie Community</a>
@@ -29,7 +30,6 @@
         </div>
       </div>
 
-      <!-- Social Links Section -->
       <div class="social-links">
         <a href="https://github.com/your-profile" aria-label="Github" target="_blank" rel="noopener">
           🍴 <!-- Food-related emoji icon -->
@@ -44,3 +44,4 @@
     </div>
   </div>
 </main>
+

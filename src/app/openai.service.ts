@@ -6,7 +6,7 @@ import axios from 'axios';
 })
 export class OpenaiService {
 
-  private openaiApiKey = 'YOUR_OPENAI_API_KEY'; // Add your OpenAI API key here
+  private openaiApiKey = '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'; // Add your OpenAI API key here
   private apiUrl = 'https://api.openai.com/v1/completions';  // OpenAI endpoint
 
   constructor() { }
