@@ -9,6 +9,9 @@
       
       <!-- Display AI Food Suggestion -->
       <p *ngIf="aiResponse">AI Suggestion: {{ aiResponse }}</p>
+      <nav>
+        <a routerLink="/users" routerLinkActive="active">Users</a>
+      </nav>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
@@ -44,4 +47,7 @@
     </div>
   </div>
 </main>
+<div class="user-list-container">
+  <app-user-list></app-user-list>
+</div>
 
