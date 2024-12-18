@@ -2,17 +2,60 @@
   <h2>Create a New User</h2>
   <form (submit)="submitUserForm($event)">
     <label for="username">Username:</label>
-    <input id="username" name="username" [(ngModel)]="newUser.username" required />
+    <input
+      id="username"
+      name="username"
+      [(ngModel)]="newUser.username"
+      placeholder="Enter username"
+      required
+    />
 
     <label for="email">Email:</label>
-    <input id="email" name="email" [(ngModel)]="newUser.email" required />
+    <input
+      id="email"
+      name="email"
+      [(ngModel)]="newUser.email"
+      placeholder="Enter email"
+      required
+    />
 
     <label for="password">Password:</label>
-    <input id="password" name="password" [(ngModel)]="newUser.password" type="password" required />
+    <input
+      id="password"
+      name="password"
+      [(ngModel)]="newUser.password"
+      type="password"
+      placeholder="Enter password"
+      required
+    />
 
     <button type="submit">Create User</button>
   </form>
 
-  <div *ngIf="successMessage">{{ successMessage }}</div>
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <h2>Add Food Item</h2>
+<form (submit)="submitFoodForm($event)">
+  <label for="foodName">Food Name:</label>
+  <input type="text" id="name" [(ngModel)]="newFoodItem.name" name="name" required />
+  <br />
+  <label for="description">Description:</label>
+  <input type="text" id="description" [(ngModel)]="newFoodItem.description" name="description" required />
+  <br />
+  <button type="submit">Add Food Item</button>
+</form>
+
+<div *ngIf="successMessage" class="success">
+  {{ successMessage }}
+</div>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+
+<h2>Food Items</h2>
+<ul>
+  <li *ngFor="let item of items">
+    {{ item.foodName }}: {{ item.description }}
+  </li>
+</ul>
 </div>

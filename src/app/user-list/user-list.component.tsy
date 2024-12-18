@@ -64,7 +64,7 @@ submitFoodForm(event: Event): void {
       this.errorMessage = '';
       console.log('Response:', response);
       this.newFoodItem = { name: '', description: '' }; // Reset the form
-      this.apiService.fetchItems(); // Refresh the items list
+      this.fetchItems(); 
     })
     .catch((error: any) => {
       this.successMessage = '';
