@@ -41,6 +41,33 @@ export class OpenAIService {
       return 'Sorry, I couldn’t get a suggestion at the moment.';
     }
   }
+async getUserFoodSuggestion(message: string): Promise<string> {
+  try {
+    const response = await axios.post(
+      this.apiUrl,
+      {
+        model: 'gpt-4o',
+        messages: [
+          { role: 'user', content: message }
+        ],
+        max_tokens: 600,
+        temperature: 0.7
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const aiResponse = response.data.choices[0].message.content.trim();
+    return aiResponse;
+  } catch (error) {
+    console.error('Error fetching AI response:', error);
+    return 'Sorry, I couldn’t process your suggestion at the moment.';
+  }
+}
   async getMainResource(page: number = 1, perPage: number = 10): Promise<any> {
     try {
       const response = await axios.get(`${this.apiGatewayUrl}/api/mainResource`, {
@@ -60,12 +87,35 @@ export class OpenAIService {
       console.log("User parameters", user);
       const response = await axios.post(`${this.apiGatewayUrl}/api/mainResource`, user);
       console.log("Creatng User!!!!")
-      return response.data; // Handle the success response
+      return response.data;
     } catch (error) {
       console.error('Error creating user:', error);
-      throw error; // Handle the error
+      throw error;
     }
   }
+async addFoodItem(foodItem: { name: string; description: string }): Promise<any> {
+  try {
+    console.log("ENTERING ITEM!!!!");
+    const response = await axios.post(`${this.apiGatewayUrl}/api/mainResource`, foodItem, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response.data; // Handle success response
+  } catch (error) {
+    console.error('Error creating food item:', error);
+    throw error; // Handle error response
+  }
 }
-
-
+async fetchItems(page: number = 1, perPage: number = 10): Promise<any> {
+  try {
+    console.log("FETCHING ITEMS!!!!");
+    const response = await axios.get(`${this.apiGatewayUrl}/api/mainResource`, {
+      params: { page, per_page: perPage }, // Query parameters for pagination
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching items:', error);
+    throw error; // Handle error response
+  }
+}
+}

@@ -1,43 +1,29 @@
-<div>
-  <h2>Create a New User</h2>
-  <form (submit)="submitUserForm($event)">
-    <label for="username">Username:</label>
-    <input
-      id="username"
-      name="username"
-      [(ngModel)]="newUser.username"
-      placeholder="Enter username"
-      required
-    />
+<h2>Become a New User to Get Updates!</h2>
+<form (submit)="submitUserForm($event)">
+  <label for="username">Username:</label>
+  <input id="username" name="username" [(ngModel)]="newUser.username" placeholder="Enter username" required />
 
-    <label for="email">Email:</label>
-    <input
-      id="email"
-      name="email"
-      [(ngModel)]="newUser.email"
-      placeholder="Enter email"
-      required
-    />
+  <label for="email">Email:</label>
+  <input id="email" name="email" [(ngModel)]="newUser.email" placeholder="Enter email" required />
 
-    <label for="password">Password:</label>
-    <input
-      id="password"
-      name="password"
-      [(ngModel)]="newUser.password"
-      type="password"
-      placeholder="Enter password"
-      required
-    />
+  <label for="password">Password:</label>
+  <input id="password" name="password" [(ngModel)]="newUser.password" type="password" placeholder="Enter password" required />
 
-    <button type="submit">Create User</button>
-  </form>
+  <button type="submit">Create User</button>
+</form>
 
-  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-  <h2>Add Food Item</h2>
+<!-- Messages for User Creation -->
+<div *ngIf="successMessageUser" class="success">
+  {{ successMessageUser }}
+</div>
+<div *ngIf="errorMessageUser" class="error">
+  {{ errorMessageUser }}
+</div>
+
+<h2>Have AI Generate Your Own Recipe!</h2>
 <form (submit)="submitFoodForm($event)">
   <label for="foodName">Food Name:</label>
-  <input type="text" id="name" [(ngModel)]="newFoodItem.name" name="name" required />
+  <input type="text" id="foodName" [(ngModel)]="newFoodItem.name" name="name" required />
   <br />
   <label for="description">Description:</label>
   <input type="text" id="description" [(ngModel)]="newFoodItem.description" name="description" required />
@@ -45,17 +31,10 @@
   <button type="submit">Add Food Item</button>
 </form>
 
-<div *ngIf="successMessage" class="success">
-  {{ successMessage }}
-</div>
-<div *ngIf="errorMessage" class="error">
-  {{ errorMessage }}
-</div>
 
-<h2>Food Items</h2>
-<ul>
-  <li *ngFor="let item of items">
-    {{ item.foodName }}: {{ item.description }}
-  </li>
-</ul>
+<div *ngIf="formattedAiSteps && formattedAiSteps.length" class="ai-response">
+  <h3>AI Suggestion:</h3>
+  <ol>
+    <li *ngFor="let step of formattedAiSteps" [innerHTML]="step"></li>
+  </ol>
 </div>

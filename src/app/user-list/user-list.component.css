@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #fff9f3; /* Light background to match the theme */
   color: #333;
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@ body {
 
 h2 {
   text-align: center;
-  color: #444;
+  color: #ff4081; /* Pink for headers */
   margin-bottom: 20px;
 }
 
@@ -16,10 +16,11 @@ h2 {
 form {
   max-width: 500px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #fff; /* White for contrast */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ff80ab; /* Light pink border */
 }
 
 /* Form inputs */
@@ -27,13 +28,14 @@ form label {
   display: block;
   font-weight: bold;
   margin-bottom: 8px;
+  color: #ff4081; /* Pink for labels */
 }
 
 form input {
   width: 100%;
   padding: 8px;
   margin-bottom: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff80ab; /* Light pink border */
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -43,29 +45,42 @@ button {
   display: inline-block;
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #ff5722; /* Orange for main button */
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #ff4081; /* Pink hover effect */
+  transform: scale(1.05); /* Slight scale effect for interactivity */
+}
+
+/* AI Suggestion Bar Styling */
+.ai-suggestion-bar {
+  text-align: center;
+  background-color: #ff4081; /* Pink background */
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 /* Success and error messages */
 .success {
-  color: green;
+  color: #4caf50; /* Green for success */
   margin-top: 10px;
   font-weight: bold;
   text-align: center;
 }
 
 .error {
-  color: red;
+  color: #f44336; /* Red for error */
   margin-top: 10px;
   font-weight: bold;
   text-align: center;
@@ -80,4 +95,11 @@ button:hover {
   button {
     font-size: 14px;
   }
+}
+.ai-response {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
