@@ -103,3 +103,24 @@ button:hover {
   border-radius: 5px;
   background-color: #f9f9f9;
 }
+/* Make the cursor a pointer and highlight the number on hover */
+.item {
+  cursor: pointer;
+  list-style: none; /* Remove default list bullets */
+  padding: 5px;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.item:hover .item-number {
+  color: #ff5722; /* Highlight the number on hover */
+  font-weight: bold; /* Make the number bold on hover */
+}
+
+.item:active .item-number {
+  color: #d84315; /* Darker color when the number is clicked */
+}
+
+.item:hover {
+  background-color: #fce4ec; /* Light pink background on hover */
+  border-radius: 5px; /* Add rounded corners */
+}

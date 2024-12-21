@@ -41,6 +41,27 @@ export class OpenAIService {
       return 'Sorry, I couldn’t get a suggestion at the moment.';
     }
   }
+
+async updateUser(resource_id: number, updatedFields: any): Promise<any> {
+  try {
+    console.log('Updating User ID:', resource_id, 'With Fields:', updatedFields);
+
+    const response = await axios.put(
+      `${this.apiGatewayUrl}/api/mainResource/${resource_id}`,
+      updatedFields,
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
+
+    console.log('User updated successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw new Error('Failed to update user');
+  }
+}
+
 async getUserFoodSuggestion(message: string): Promise<string> {
   try {
     const response = await axios.post(
@@ -93,29 +114,77 @@ async getUserFoodSuggestion(message: string): Promise<string> {
       throw error;
     }
   }
-async addFoodItem(foodItem: { name: string; description: string }): Promise<any> {
-  try {
-    console.log("ENTERING ITEM!!!!");
-    const response = await axios.post(`${this.apiGatewayUrl}/api/mainResource`, foodItem, {
-      headers: { 'Content-Type': 'application/json' },
-    });
-    return response.data; // Handle success response
-  } catch (error) {
-    console.error('Error creating food item:', error);
-    throw error; // Handle error response
-  }
-}
 async fetchItems(page: number = 1, perPage: number = 10): Promise<any> {
   try {
-    console.log("FETCHING ITEMS!!!!");
+    console.log("Fetching items with pagination...");
     const response = await axios.get(`${this.apiGatewayUrl}/api/mainResource`, {
       params: { page, per_page: perPage }, // Query parameters for pagination
       headers: { 'Content-Type': 'application/json' },
     });
-    return response.data;
+    console.log("Fetched items:", response.data);
+    return response.data.items;
   } catch (error) {
     console.error('Error fetching items:', error);
-    throw error; // Handle error response
+    throw error;
   }
 }
+
+async fetchUsers(page: number = 1, perPage: number = 10, username?: string): Promise<any> {
+  try {
+    console.log("Fetching users with pagination...");
+    const params: any = { page, per_page: perPage };
+    if (username) params.username = username;
+    const response = await axios.get(`${this.apiGatewayUrl}/api/mainResource/users`, { params });
+    console.log("Fetched users:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error;
+  }
+}
+
+async addFoodItem(foodItem: { name: string; description: string }): Promise<any> {
+  try {
+    console.log("Adding food item...");
+    const response = await axios.post(`${this.apiGatewayUrl}/api/mainResource`, foodItem, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    console.log("Food item created:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating food item:', error);
+    throw error;
+  }
+}
+
+async addReview(itemId: number, reviewData: { review: string; rating: number }): Promise<any> {
+  try {
+    console.log("Adding review for item ID:", itemId);
+    const response = await axios.post(
+      `${this.apiGatewayUrl}/api/mainResource/${itemId}/subResource`,
+      reviewData,
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+    console.log("Review added:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding review:', error);
+    throw error;
+  }
+}
+
+async fetchReviews(itemId: number, page: number = 1, perPage: number = 10): Promise<any> {
+  try {
+    console.log(`Fetching reviews for item ID ${itemId} with pagination...`);
+    const response = await axios.get(`${this.apiGatewayUrl}/api/mainResource/${itemId}/subResource`, {
+      params: { page, per_page: perPage },
+    });
+    console.log("Fetched reviews:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    throw error;
+  }
+}
+
 }

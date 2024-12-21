@@ -57,6 +57,20 @@ p {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.blurbs-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
+  margin-top: 1rem; /* Add spacing below the title */
+}
+
+.blurbs-container .pill {
+  flex: 1 1 auto; /* Allow pills to adjust size dynamically */
+  text-align: center;
+  max-width: 200px; /* Limit the width of each pill */
+}
+
 .pill:hover {
   background-color: var(--juicy-red);
   transform: scale(1.05);

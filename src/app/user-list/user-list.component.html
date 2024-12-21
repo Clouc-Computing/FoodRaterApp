@@ -11,7 +11,6 @@
 
   <button type="submit">Create User</button>
 </form>
-
 <!-- Messages for User Creation -->
 <div *ngIf="successMessageUser" class="success">
   {{ successMessageUser }}
@@ -19,8 +18,30 @@
 <div *ngIf="errorMessageUser" class="error">
   {{ errorMessageUser }}
 </div>
+<!-- Conditionally Render Update Email Form -->
+<div *ngIf="showUpdateEmailForm">
+  <h2>(Update Email</h2>
+  <form (submit)="updateUserEmail($event)">
+    <label for="updatedEmail">Updated Email:</label>
+    <input
+      id="updatedEmail"
+      name="email"
+      [(ngModel)]="newUser.email"
+      placeholder="Enter updated email"
+      required
+    />
+    <button type="submit">Update Email</button>
+  </form>
 
-<h2>Have AI Generate Your Own Recipe!</h2>
+  <!-- Success and Error Messages -->
+  <div *ngIf="successMessageUser" class="success">
+    {{ successMessageUser }}
+  </div>
+  <div *ngIf="errorMessageUser" class="error">
+    {{ errorMessageUser }}
+  </div>
+</div>
+<h2>Have AI Generate Your Own Recipe (Takes Less Than Two Minutes!)!</h2>
 <form (submit)="submitFoodForm($event)">
   <label for="foodName">Food Name:</label>
   <input type="text" id="foodName" [(ngModel)]="newFoodItem.name" name="name" required />
@@ -37,4 +58,30 @@
   <ol>
     <li *ngFor="let step of formattedAiSteps" [innerHTML]="step"></li>
   </ol>
+</div>
+<div>
+<h2>Items</h2>
+<ul>
+  <li *ngFor="let item of items" class="item" (click)="selectItemForReview(item)">
+    <span class="item-number">{{ item.id }}.</span> <strong>{{ item.name || 'Unnamed Item' }}</strong> - {{ item.description || 'No description available' }}
+  </li>
+</ul>
+<!-- Selected Item Review Section -->
+<div *ngIf="selectedItem">
+  <h3>Tried Any of These Recipes? Write a Review for "{{ selectedItem.name || 'Unnamed Item' }}"</h3>
+  <form (ngSubmit)="submitReviewForm($event)">
+    <label for="review">Review:</label><br>
+    <textarea id="review" [(ngModel)]="newReview.review" name="review" placeholder="Write your review here..." required></textarea><br>
+    <label for="rating">Rating:</label><br>
+    <input id="rating" type="number" [(ngModel)]="newReview.rating" name="rating" min="1" max="5" required /><br><br>
+    <button type="submit">Submit Review</button>
+  </form>
+
+  <!-- Review Submission Messages -->
+  <div *ngIf="successMessageReview" class="success">
+    {{ successMessageReview }}
+  </div>
+  <div *ngIf="errorMessageReview" class="error">
+    {{ errorMessageReview }}
+  </div>
 </div>
