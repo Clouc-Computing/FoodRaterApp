@@ -27,6 +27,7 @@ export class UserListComponent {
   selectedItemId: number | null = null;
   selectedItem: any = null; 
   aiResponse: string = '';
+  aiCompleted: boolean = false;
   showUpdateEmailForm: boolean = false;
   currUserId: number = 0;
   constructor(private apiService: OpenAIService) { }
@@ -66,7 +67,7 @@ updateUserEmail(event: Event): void {
   fetchItems(): void {
     this.apiService.getMainResource()
       .then((response: any) => {
-        this.items = response.items.items;
+        this.items = response.items;
       })
       .catch((error: any) => {
         console.error('Error fetching items:', error);
@@ -80,8 +81,8 @@ updateUserEmail(event: Event): void {
         this.successMessageUser = 'User created successfully!';
         this.errorMessageUser = '';
         console.log('Response:', response);
-	console.log("USER ID", response.id);
-	this.currUserId = response.id;
+	console.log("USER ID", response.user.id);
+	this.currUserId = response.user.id;
         this.showUpdateEmailForm = true; 
       })
       .catch((error) => {
@@ -114,6 +115,7 @@ submitFoodForm(event: Event): void {
       this.apiService.getUserFoodSuggestion(userMessage)
         .then((aiResponse: string) => {
           this.formatAiResponse(aiResponse);
+          this.aiCompleted = true;
           console.log('AI Response:', aiResponse);
         })
         .catch((error: any) => {

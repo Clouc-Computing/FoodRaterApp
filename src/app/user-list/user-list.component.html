@@ -60,12 +60,16 @@
   </ol>
 </div>
 <div>
-<h2>Items</h2>
-<ul>
-  <li *ngFor="let item of items" class="item" (click)="selectItemForReview(item)">
-    <span class="item-number">{{ item.id }}.</span> <strong>{{ item.name || 'Unnamed Item' }}</strong> - {{ item.description || 'No description available' }}
-  </li>
-</ul>
+<!-- Conditionally Render Items List -->
+<div *ngIf="aiCompleted">
+  <h2>Items</h2>
+  <ul>
+    <li *ngFor="let item of items" class="item" (click)="selectItemForReview(item)">
+      <span class="item-number">{{ item.id }}.</span> <strong>{{ item.name || 'Unnamed Item' }}</strong> - {{ item.description || 'No description available' }}
+    </li>
+  </ul>
+</div>
+
 <!-- Selected Item Review Section -->
 <div *ngIf="selectedItem">
   <h3>Tried Any of These Recipes? Write a Review for "{{ selectedItem.name || 'Unnamed Item' }}"</h3>
